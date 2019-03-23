@@ -5,6 +5,7 @@ import {Player} from "./components/Player";
 
 
 class App extends React.Component {
+
   state = {
     players: [
       {name: 'KYJ', score: 0, id: 1},
@@ -13,6 +14,7 @@ class App extends React.Component {
       {name: 'PARK', score: 0, id: 4},
     ]
   };
+
   handleRemovePlayer = (id) => {
     this.setState(prevState => {
       return {
@@ -20,6 +22,13 @@ class App extends React.Component {
       }
     })
   }
+
+  handleChangeScore = (id, delta) => {
+
+    console.log(id, delta);
+
+  }
+
   render() {
     return (
       <div className="scoreboard">
@@ -30,7 +39,8 @@ class App extends React.Component {
             <Player name={player.name} key={player.id.toString()}
                     id={player.id}
                     score={player.score}
-                    handleRemovePlayer={this.handleRemovePlayer} />)
+                    handleRemovePlayer={this.handleRemovePlayer}
+                    handleChangeScore={this.handleChangeScore} />)
         }
       </div>
     );
