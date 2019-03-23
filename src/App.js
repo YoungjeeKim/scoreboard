@@ -25,8 +25,21 @@ class App extends React.Component {
 
   handleChangeScore = (id, delta) => {
 
-    console.log(id, delta);
+    // console.log(id, delta);
+    this.setState(prevState => {
 
+      prevState.players.forEach(item => {
+        if(item.id === id) {
+          item.score += delta;
+        }
+      })
+
+      //새로운 배열에 dcoby
+      // object.assign
+      // spread 연산자 : ...
+      // [] :새로운 배열을 만든다
+      return {players: [...prevState.players]}
+    })
   }
 
   render() {
