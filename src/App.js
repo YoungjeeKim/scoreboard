@@ -77,9 +77,9 @@ class App extends React.Component {
         <Header title="My scoreboard" totalPlayers={this.state.players.length} />
 
 
-        { this.state.players.map(item => <Player name={item.name}
-                                                 key={item.id.toString()} handleRemovePlayer={this.handleRemovePlayer}
-                                                 id={item.id} />)
+        { this.state.players.map(player =>
+          <Player name={player.name} key={player.id.toString()}
+                  handleRemovePlayer={this.handleRemovePlayer} id={player.id} />)
         }
       </div>
     );
