@@ -6,21 +6,6 @@ export class Counter extends React.Component {
     super(props);
   }
 
-  /*
-  incrementScore = () => {
-    console.log(this);
-    this.setState(prevState => {
-      return {score: prevState.score + 1}
-    });
-  }
-
-  decrementScore = () => {
-    this.setState(prevState => {
-      return {score: prevState.score - 1}
-    });
-  }
-  */
-
   render() {
     return (
       <div className="counter">

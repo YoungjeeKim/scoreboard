@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './App.css';
 import {Header} from "./components/Header";
 import {Player} from "./components/Player";
+import {AddPlayerForm} from "./components/AddPlayerForm";
 
 
-class App extends React.Component {
+class App extends Component {
+
+  max_player_id = 4;
 
   state = {
     players: [
@@ -15,6 +18,7 @@ class App extends React.Component {
     ]
   };
 
+  //삭제
   handleRemovePlayer = (id) => {
     this.setState(prevState => {
       return {
@@ -23,6 +27,7 @@ class App extends React.Component {
     })
   }
 
+  //점수 변환
   handleChangeScore = (id, delta) => {
 
     // console.log(id, delta);
@@ -33,20 +38,22 @@ class App extends React.Component {
           item.score += delta;
         }
       })
-
-      //새로운 배열에 dcoby
-      // object.assign
-      // spread 연산자 : ...
-      // [] :새로운 배열을 만든다
       return {players: [...prevState.players]}
     })
+  }
+
+  //사용자 추가
+  handleAddPlayer = (name) => {
+    this.setState(prevState => ({
+      players: [...prevState.players, {name, score: 0, id: ++this.max_player_id}]
+    }));
   }
 
   render() {
     return (
       <div className="scoreboard">
 
-        <Header title="My scoreboard" totalPlayers={this.state.players.length} />
+        <Header title="My scoreboard" totalPlayers={10 + 1} players={this.state.players}/>
         {
           this.state.players.map(player =>
             <Player name={player.name} key={player.id.toString()}
@@ -55,7 +62,9 @@ class App extends React.Component {
                     handleRemovePlayer={this.handleRemovePlayer}
                     handleChangeScore={this.handleChangeScore} />)
         }
+        <AddPlayerForm handleAddPlayer={this.handleAddPlayer}/>
       </div>
+
     );
   }
 }
