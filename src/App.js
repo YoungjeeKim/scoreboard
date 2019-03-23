@@ -1,10 +1,31 @@
 import React from 'react';
 import './App.css';
 
+
+const Header = (props) => {
+
+  console.log(props);
+  //변수 선언하면 {props.tilte} 대신 {title} 사용 가능
+  const {title, totalPlayers} = props; //destruct assignment
+
+  return (
+    <header>
+      <h1>{title}</h1>
+      <span className="stats">Players : {totalPlayers}</span>
+    </header>
+  );
+
+}
+
 class Counter extends React.Component {
-  state = {
-    score: 0
-  };
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      score: 30
+    }
+
+  }
 
   incrementScore = () => {
     console.log(this);
@@ -31,7 +52,6 @@ class Counter extends React.Component {
 }
 
 const Player = (props) => {
-  console.log(props);
   return (
     <div className="player">
       <span className="player-name">
@@ -45,15 +65,6 @@ const Player = (props) => {
   );
 }
 
-const Header = (props) => {
-  console.log(props);
-  return (
-    <header>
-      <h1>{ props.title }</h1>
-      <span className="stats">Players: { props.totalPlayers }</span>
-    </header>
-  )
-}
 
 class App extends React.Component {
   state = {
